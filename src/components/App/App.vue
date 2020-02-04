@@ -26,11 +26,10 @@ export default {
     };
   },
   created() {
-    this.getCountries()
-    
+    this.getCountries();
   },
-  updated(){
-    this.loadCountry()
+  updated() {
+    this.loadCountry();
   },
   methods: {
     retrieveCountry(countryData) {
