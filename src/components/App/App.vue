@@ -25,12 +25,26 @@ export default {
       countries: null
     };
   },
-  mounted() {
-    this.getCountries();
+  created() {
+    this.getCountries()
+    
+  },
+  updated(){
+    this.loadCountry()
   },
   methods: {
     retrieveCountry(countryData) {
       this.country = countryData;
+      let cca2 = this.country.cca2;
+      this.$router.push(cca2);
+    },
+    loadCountry() {
+      let cca2 = this.$route.params.cca2;
+      for (let i = 0; i < this.countries.length; i++) {
+        if (cca2 === this.countries[i].cca2) {
+          return (this.country = this.countries[i]);
+        }
+      }
     },
     ciocToName(countries) {
       for (let i = 0; i < countries.length; i++) {
@@ -52,8 +66,6 @@ export default {
           "https://api.codetabs.com/v1/proxy?quest=https://techtest.cocunat.workers.dev/"
         )
         .then(res => {
-          console.log(res);
-
           this.countries = this.ciocToName(res.data);
         })
         .catch(error => console.log(error));
@@ -61,6 +73,8 @@ export default {
     changeCountry(border) {
       for (let i = 0; i < this.countries.length; i++) {
         if (border === this.countries[i].name.common) {
+          let cca2 = this.countries[i].cca2;
+          this.$router.push(cca2);
           return (this.country = this.countries[i]);
         }
       }

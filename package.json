@@ -10,7 +10,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.4.4",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
@@ -35,13 +36,13 @@
     ],
     "rules": {
       "no-console": "off",
-        "no-restricted-syntax": [
-            "error",
-            {
-                "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
-                "message": "Unexpected property on console object was called"
-            }
-        ]
+      "no-restricted-syntax": [
+        "error",
+        {
+          "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+          "message": "Unexpected property on console object was called"
+        }
+      ]
     },
     "parserOptions": {
       "parser": "babel-eslint"
