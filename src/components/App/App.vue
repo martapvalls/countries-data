@@ -32,11 +32,13 @@ export default {
     this.loadCountry();
   },
   methods: {
+    // retrieveCountry sets the country to be shown when user selects from CountriesList
     retrieveCountry(countryData) {
       this.country = countryData;
       let cca2 = this.country.cca2;
       this.$router.push(cca2);
     },
+    //this function allows to navigate between countries, for example /ES will show Spain
     loadCountry() {
       let cca2 = this.$route.params.cca2;
       for (let i = 0; i < this.countries.length; i++) {
@@ -45,6 +47,7 @@ export default {
         }
       }
     },
+    //ciocToName sanitizes borders, it changes cca3 to common name for better user experience
     ciocToName(countries) {
       for (let i = 0; i < countries.length; i++) {
         let borders = countries[i].borders;
@@ -59,6 +62,7 @@ export default {
       }
       return countries;
     },
+    //getCountries does the call to API to get data from countries, then calls ciocToName to do the sanitizing 
     getCountries() {
       axios
         .get(
@@ -69,6 +73,7 @@ export default {
         })
         .catch(error => console.log(error));
     },
+    //changeCountry changes the country to be shown when clicks on borders in CountryDetail
     changeCountry(border) {
       for (let i = 0; i < this.countries.length; i++) {
         if (border === this.countries[i].name.common) {
